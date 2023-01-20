@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table
@@ -21,12 +22,16 @@ public class Restaurante {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<ImgRestaurante> imgsRestaurante;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<Horario> horarios;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<ComentarioRest> comentariosRest;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<Pedido> pedidos;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<PlatoRestaurante> platosRestaurante;
 
