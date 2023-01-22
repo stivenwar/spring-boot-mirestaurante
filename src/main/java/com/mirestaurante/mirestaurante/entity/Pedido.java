@@ -28,7 +28,7 @@ public class Pedido {
     @Column(name= "localizador")
     private String localizador;
 
-    @Column(name= "conste_transporte")
+    @Column(name= "coste_transporte")
     private BigDecimal costeTransporte;
 
     @Column(name= "precio_total")
@@ -42,7 +42,7 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id",nullable = false)
-    private Restaurante Restaurante;
+    private Restaurante restaurante;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id",nullable = false)

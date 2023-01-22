@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table
+@Table(name = "restaurante")
 @Getter
 @Setter
 public class Restaurante {
@@ -21,7 +21,7 @@ public class Restaurante {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
-    private Set<ImgRestaurante> imgsRestaurante;
+    private Set<ImgRestaurante> imgRestaurante;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<Horario> horarios;
@@ -30,10 +30,11 @@ public class Restaurante {
     private Set<ComentarioRest> comentariosRest;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
-    private Set<Pedido> pedidos;
+    private Set<Pedido> pedido;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<PlatoRestaurante> platosRestaurante;
+
 
     @OneToOne
     @PrimaryKeyJoinColumn
@@ -51,16 +52,21 @@ public class Restaurante {
     @Column(name = "localizacion")
     private String localizacion;
 
-    @Column(name = "rango_max_reparto")
-    private int rangoMaxReparto;
-
-    @Column(name = "rango_max_reparto")
+    @Column(name = "destacado")
     private boolean destacado;
 
-    @Column(name = "rango_max_reparto")
+    @Column(name = "activo")
     private boolean activo;
 
-    @Column(name = "rango_max_reparto")
+    @Column(name = "date_created")
     @CreationTimestamp
     private Date dateCreated;
+
+    @Column(name = "date_updated")
+    @CreationTimestamp
+    private Date dateUpdate;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 }

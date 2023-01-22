@@ -18,9 +18,6 @@ public class ComentarioPlato {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "plato_id")
-    private Long platoId;
-
     @Column(name = "email")
     private String email;
 

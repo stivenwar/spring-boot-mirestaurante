@@ -22,6 +22,6 @@ public class ImgRestaurante {
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id",nullable = false)
-    private Restaurante platoRestaurante;
+    private Restaurante restaurante;
 
 }
