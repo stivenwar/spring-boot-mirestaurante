@@ -1,5 +1,6 @@
 package com.mirestaurante.mirestaurante.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,17 +34,21 @@ public class Direccion {
     @Column(name = "provincia")
     private String provincia;
 
-    @Column(name = "cp")
-    private String cp;
-
     @Column(name = "pais")
     private String pais;
 
+    @Column(name = "cp")
+    private String cp;
+
+
+
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @JoinColumn(name = "cliente_id")
+    @JsonBackReference(value="direccionesCliente")
     private Cliente cliente;
 
     @OneToOne
     @PrimaryKeyJoinColumn
+    @JsonBackReference(value="direccionesPedido")
     private Pedido pedido;
 }

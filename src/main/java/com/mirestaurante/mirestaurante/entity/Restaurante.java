@@ -1,10 +1,13 @@
 package com.mirestaurante.mirestaurante.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Set;
@@ -21,18 +24,23 @@ public class Restaurante {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference(value="imgRestaurante")
     private Set<ImgRestaurante> imgRestaurante;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference(value="horarios")
     private Set<Horario> horarios;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference(value="comentarioRest")
     private Set<ComentarioRest> comentariosRest;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference(value="pedidosRestaurante")
     private Set<Pedido> pedido;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference(value="platosRestaurante")
     private Set<PlatoRestaurante> platosRestaurante;
 
 
@@ -63,10 +71,11 @@ public class Restaurante {
     private Date dateCreated;
 
     @Column(name = "date_updated")
-    @CreationTimestamp
+    @UpdateTimestamp
     private Date dateUpdate;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
+    @JsonBackReference(value="restaurantes")
     private Categoria categoria;
 }

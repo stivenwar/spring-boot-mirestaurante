@@ -2,6 +2,7 @@ package com.mirestaurante.mirestaurante.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,11 +17,12 @@ public class PlatoPedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
-    @JsonBackReference
+    @JsonBackReference(value = "platosPedidos")
     private Pedido pedido;
 
     @OneToOne
@@ -31,6 +33,7 @@ public class PlatoPedido {
     private int cantidad;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "platoPedido")
+    @JsonManagedReference(value="extrasPedido")
     private Set<ExtraPedido> extraPedido;
 
 }

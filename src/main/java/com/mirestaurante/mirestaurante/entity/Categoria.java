@@ -1,5 +1,6 @@
 package com.mirestaurante.mirestaurante.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +22,6 @@ public class Categoria {
     private String categoria;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
+    @JsonManagedReference(value="restaurantes")
     private Set<Restaurante> restaurante;
 }

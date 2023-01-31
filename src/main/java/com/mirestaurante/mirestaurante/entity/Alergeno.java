@@ -1,6 +1,7 @@
 package com.mirestaurante.mirestaurante.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,5 +21,6 @@ public class Alergeno {
 
     @ManyToOne
     @JoinColumn(name = "plato_id", nullable = false)
+    @JsonBackReference(value="alergenos")
     private PlatoRestaurante platoRestaurante;
 }

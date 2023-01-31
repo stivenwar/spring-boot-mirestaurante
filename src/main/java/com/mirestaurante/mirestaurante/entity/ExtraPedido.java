@@ -1,5 +1,6 @@
 package com.mirestaurante.mirestaurante.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +28,7 @@ public class ExtraPedido {
 
     @ManyToOne
     @JoinColumn(name = "plato_pedido_id", nullable = false)
+    @JsonBackReference(value = "extraPedido")
     private PlatoPedido platoPedido;
 
 
